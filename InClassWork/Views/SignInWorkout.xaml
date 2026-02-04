@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="InClassWork.Views.SignInWorkout"
+             xmlns:views="clr-namespace:InClassWork.ViewModels"
+             x:DataType="views:SignInWorkoutViewModel"
+             FlowDirection="RightToLeft"               
+             Title="SignInWorkout">
+    
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Offset="0.0" Color="LightCyan"/>
+            <GradientStop Offset="0.5" Color="#3a7bd5"/>
+            <GradientStop Offset="1.0" Color="Purple"/>
+        </LinearGradientBrush>
+    </ContentPage.Background>
+    <VerticalStackLayout
+        Padding="30"
+        Spacing="25"
+        VerticalOptions="Center">
+        <!--כותרת-->
+        <Label
+            FontAttributes="Bold"
+            FontSize="25"
+            VerticalOptions="Center"
+            Text="כניסה"
+            TextColor="Snow"/>
+            <Border
+                Padding="10"
+                Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1">
+                <Entry
+                    FlowDirection="LeftToRight"
+                    Keyboard="Email"
+                    FontSize="18"
+                    Placeholder="Email"
+                    TextColor="Black"
+                    ReturnType="Go"
+                    Text="{Binding UserName}">
+                </Entry>
+            </Border>
+            
+            <Border
+                Stroke="#ccc"
+                StrokeShape="RoundRectangle 8"
+                StrokeThickness="1"
+                FlowDirection="LeftToRight">
+                <Grid
+                    Padding="10"
+                    ColumnDefinitions="*,Auto"
+                    VerticalOptions="Center">
+                    <Entry
+                        x:Name="PasswordEntry"
+                        Text="{Binding UserPassword}"
+                        BackgroundColor="Transparent"
+                        FontSize="18"
+                        IsPassword="{Binding PasswordNotVisible}"
+                        Placeholder="Password"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                <Button
+                        x:Name="TogglePasswordButton"
+                        Margin="5,0,0,0"
+                        Padding="0"
+                        BackgroundColor="Transparent"
+                        FontSize="24"
+                        FontFamily="MaterialIcons"
+                        HorizontalOptions="End"
+                        Text="{Binding PasswordButtonText}"
+                        TextColor="Black"
+                        Command="{Binding ShowPasswordCommand}"
+                        VerticalOptions="Center"/>
+            </Grid>
+            </Border>
+        
+            <!--כפתור כניסה-->
+            <Button
+                CornerRadius="8"
+                FontSize="18"
+                HeightRequest="50"
+                Text="חיבור"
+                TextColor="White"
+                Command="{Binding SignInCommand}"/>
+
+            <!--שגיאה-->
+            <Label
+                x:Name="errorLbl"
+                FontSize="45"
+                HorizontalTextAlignment="Center"
+                IsVisible="{Binding ErrorMessageVisible}"
+                Text="{Binding ErrorMessage}"
+                TextColor="{Binding SignInMessageColor}"/>
+
+        <!--Don't have an account?-->
+        <HorizontalStackLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            FlowDirection="LeftToRight">
+
+            <Label
+                Margin="14,0,0,0"
+                VerticalTextAlignment="Center"
+                TextColor="White"
+                Text="Don't have an account?"
+                FontSize="16" />
+
+            <Button
+                BackgroundColor="Transparent"
+                Command="{Binding NavigateToSignUpCommand}"
+                FontSize="16"
+                TextColor="Aquamarine"
+                Text="SignUp"/>
+
+        </HorizontalStackLayout>
+
+    </VerticalStackLayout>
+</ContentPage>
