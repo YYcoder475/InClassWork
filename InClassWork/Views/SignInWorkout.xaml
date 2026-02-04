@@ -5,8 +5,7 @@
              xmlns:views="clr-namespace:InClassWork.ViewModels"
              x:DataType="views:SignInWorkoutViewModel"
              FlowDirection="RightToLeft"               
-             Title="SignInWorkout"
-             NavigationPage.HasNavigationBar="False">
+             Title="SignInWorkout">
     
     <ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
