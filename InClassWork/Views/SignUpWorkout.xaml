@@ -6,7 +6,8 @@
              x:DataType="views:SignUpViewModel"
              x:Class="InClassWork.Views.SignUpWorkout"
              Title="SignUpWorkout"
-             FlowDirection="LeftToRight">
+             FlowDirection="LeftToRight"
+             NavigationPage.HasNavigationBar="False">
 
     <ContentPage.Resources>
         <Style x:Key="InvalidEntryStyle" TargetType="Entry">

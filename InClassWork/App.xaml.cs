@@ -1,10 +1,12 @@
 ﻿
+using InClassWork.Models;
 using InClassWork.Views;
 
 namespace InClassWork;
 
 public partial class App : Application
 {
+	public AppUser currentUser { get; set; }
 	public App()
 	{
 		InitializeComponent();

@@ -22,5 +22,10 @@ namespace InClassWork.Service
         {
             return _users.Any(u => u.UserEmail == uEmail && u.UserPassword == uPass);
         }
+
+        public AppUser? GetUser(string uEmail)
+        {
+            return _users.FirstOrDefault(u => u.UserEmail == uEmail);
+        }
     }
 }

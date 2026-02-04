@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using InClassWork.Helper;
+using InClassWork.Models;
 using InClassWork.Service;
 
 namespace InClassWork.ViewModels
@@ -160,6 +161,13 @@ namespace InClassWork.ViewModels
             ErrorMessageVisible = true;
             if (_db.isExist(UserName, UserPassword))
             {
+                //Get User from DB
+                AppUser user = _db.GetUser(UserName)!;
+
+                //Set CurrentUser in App
+                (App.Current as App)!.currentUser = user;
+
+                //Navigate to MainPage
                 Application.Current!.Windows[0].Page = new AppShell();
             }
             else
