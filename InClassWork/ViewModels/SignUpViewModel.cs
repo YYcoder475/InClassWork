@@ -152,7 +152,23 @@ namespace InClassWork.ViewModels
                 RegDate = DateTime.Now.ToShortDateString()
             };
 
-            await Toast.Make($"SignUp new user {newUser.UserEmail}", ToastDuration.Short, 14).Show();
+            //Checks if User email not exist
+            if (_dbMokup.GetUserByEmail(newUser.UserEmail) != null)
+            {
+                await Toast.Make($"Email already exists!", ToastDuration.Short, 14).Show();
+                return;
+            }
+            
+            //Add user to database
+            _dbMokup.Insert(newUser);
+
+            //Sign In the user
+            //Set CurrntUser in app
+            (App.Current as App)!.currentUser = newUser;    
+
+            //Navigate To Mainpage
+            Application.Current!.Windows[0].Page = new AppShell();
+
         }
 
     }

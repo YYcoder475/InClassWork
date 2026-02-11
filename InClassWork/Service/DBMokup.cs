@@ -23,9 +23,14 @@ namespace InClassWork.Service
             return _users.Any(u => u.UserEmail == uEmail && u.UserPassword == uPass);
         }
 
-        public AppUser? GetUser(string uEmail)
+        public AppUser? GetUserByEmail(string uEmail)
         {
-            return _users.FirstOrDefault(u => u.UserEmail == uEmail);
+            return _users.FirstOrDefault( u => u.UserEmail == uEmail , null);
+        }
+
+        public void Insert(AppUser user)
+        {
+            _users.Add(user);
         }
     }
 }

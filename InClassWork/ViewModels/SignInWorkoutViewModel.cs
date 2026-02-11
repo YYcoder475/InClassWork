@@ -162,7 +162,7 @@ namespace InClassWork.ViewModels
             if (_db.isExist(UserName, UserPassword))
             {
                 //Get User from DB
-                AppUser user = _db.GetUser(UserName)!;
+                AppUser user = _db.GetUserByEmail(UserName)!;
 
                 //Set CurrentUser in App
                 (App.Current as App)!.currentUser = user;

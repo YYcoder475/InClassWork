@@ -3,10 +3,19 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="InClassWork.Views.AdminMainPageView"
              Title="AdminMainPageView">
+    
     <VerticalStackLayout>
+        
         <Label 
             Text="Welcome to Admin Page!"
             VerticalOptions="Center" 
             HorizontalOptions="Center" />
+
+        <Button
+            Text="Go to Users List"
+            Command="{Binding NavigateToUsersListCommand}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center" />
+
     </VerticalStackLayout>
 </ContentPage>

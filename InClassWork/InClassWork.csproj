@@ -62,6 +62,15 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <Compile Update="Views\AdminMainPageView.xaml.cs">
+	    <DependentUpon>AdminMainPageView.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Views\AccountPageView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\AdminMainPageView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

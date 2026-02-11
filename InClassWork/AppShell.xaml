@@ -10,28 +10,43 @@
         ContentTemplate="{DataTemplate local:MainPageView}"
         Route="MainPage" />-->
 
-    <FlyoutItem>
+    <TabBar>
+        
         <!-- MainPage -->
-        <ShellContent
-        Title="Home"
-        Icon="home.png"
-        ContentTemplate="{DataTemplate local:MainPageView}"
-        Route="MainPage" />
+        <Tab Icon="home.png">
+            <ShellContent
+            Title="Home"
+            ContentTemplate="{DataTemplate local:MainPageView}"
+            Route="MainPage" />
+        </Tab>
+
+        <!-- Account -->
+        <Tab Icon="account.png">
+            <ShellContent
+            Title="Account"
+            ContentTemplate="{DataTemplate local:AccountPageView}"
+            Route="AccountPageView" />
+        </Tab>
 
         <!-- Admin Page -->
-        <ShellContent
-        Title="Admin"
-        Icon="Admin.png"
-        ContentTemplate="{DataTemplate local:AdminMainPageView}"
-        Route="AdminPage" />
+        <Tab Icon="Admin.png">
+            <ShellContent
+            Title="Admin"
+            ContentTemplate="{DataTemplate local:AdminMainPageView}"
+            IsVisible="{Binding IsAdminVisible}"
+            Route="AdminPageView" />
+        </Tab>
 
-        <!-- Users List -->
-        <ShellContent
-        Title="Users List"
-        Icon="garden.png"
-        ContentTemplate="{DataTemplate local:UsersListView}"
-        Route="UsersList" />
-
-    </FlyoutItem>
+        <Tab Icon="signout.png">
+            <ShellContent>
+                <Button
+                    Margin="15"
+                    Command="{Binding SignOut}"
+                    VerticalOptions="Center"
+                    HorizontalOptions="Center" />
+            </ShellContent>
+            
+        </Tab>
+    </TabBar>
 
 </Shell>
