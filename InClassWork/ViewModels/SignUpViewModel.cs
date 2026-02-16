@@ -16,6 +16,7 @@ namespace InClassWork.ViewModels
 {
     public partial class SignUpViewModel: ObservableObject
     {
+        #region Data Members
         AppUser _newUser;
         DBMokup _dbMokup;
         private string? _firstName;
@@ -26,7 +27,9 @@ namespace InClassWork.ViewModels
         [ObservableProperty] private bool _isPasswordNotVisible;
         [ObservableProperty] private string _passwordButtonText;
         private readonly INavigation? _navigationPage;
+        #endregion
 
+        #region Properties
         public string? FirstName
         {
             get => _firstName;
@@ -92,8 +95,8 @@ namespace InClassWork.ViewModels
                 }
             }
         }
-        
-        
+        #endregion
+
         public ICommand? SignUpCommand { get; }
         public ICommand? NavigateToSignInCommand { get; }
 

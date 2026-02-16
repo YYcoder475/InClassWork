@@ -7,10 +7,15 @@ namespace InClassWork;
 public partial class App : Application
 {
 	public AppUser? currentUser { get; set; }
-	public App()
+
+	private NavigationPage navigationPage;
+
+
+    public App()
 	{
 		InitializeComponent();
-	}
+		BindingContext = new ViewModels.AppShellViewModel();
+    }
 
     protected override Window CreateWindow(IActivationState activationState)
     {
