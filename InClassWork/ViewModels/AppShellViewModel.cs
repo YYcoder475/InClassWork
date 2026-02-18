@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace InClassWork.ViewModels
 {
@@ -13,11 +14,15 @@ namespace InClassWork.ViewModels
     {
         [ObservableProperty]
         private bool _isAdminVisible;
+        private NavigationPage NavigationPage { get; set; }
+
 
         public AppShellViewModel()
         {
             if ((App.Current as App)!.currentUser.IsAdmin)
                 IsAdminVisible = true; // set to true for testing purposes
+
+            
 
         }
 
@@ -26,7 +31,13 @@ namespace InClassWork.ViewModels
         private async Task SignOut()
         {
             (App.Current as App)!.currentUser = null;
-            Application.Current.Windows[0].Page = new SignInWorkout();
+            Application.Current.Windows[0].Page = new NavigationPage(new SignInWorkout());
+        }
+
+        [RelayCommand]
+        private async Task NavigateToAdminPage()
+        {
+            Shell.Current.GoToAsync(nameof(AdminMainPageView));
         }
     }
 }

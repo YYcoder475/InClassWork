@@ -5,48 +5,61 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:InClassWork.Views">
 
-    <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPageView}"
-        Route="MainPage" />-->
+    <Shell.TitleView>
+        <HorizontalStackLayout>
+            <!-- Signout Button-->
+            <Button
+                Margin="5"
+                BackgroundColor="Wheat"
+                Command="{Binding SignOutCommand}"
+                FontSize="24"
+                FontFamily="MaterialIcons"
+                TextColor="Black"
+                Text="&#xe9ba;"
+                HorizontalOptions="Start"/>
+
+            <!-- Admin Page-->
+            <!-- Shows if user is Admin -->
+            <Button
+                Margin="0,5,5,5"
+                BackgroundColor="Wheat"
+                FontSize="24"
+                FontFamily="MaterialIcons"
+                TextColor="Black"
+                Text="&#xf02e;"
+                HorizontalOptions="Start"
+                Command="{Binding NavigateToAdminPageCommand}"
+                IsVisible="{Binding IsAdminVisible}"/>
+
+        </HorizontalStackLayout>
+    </Shell.TitleView>
 
     <TabBar>
-        
-        <!-- MainPage -->
         <Tab Icon="home.png">
             <ShellContent
             Title="Home"
             ContentTemplate="{DataTemplate local:MainPageView}"
             Route="MainPage" />
         </Tab>
-
-        <!-- Account -->
         <Tab Icon="account.png">
             <ShellContent
             Title="Account"
             ContentTemplate="{DataTemplate local:AccountPageView}"
-            Route="AccountPageView" />
+            Route="AccountPage" />
         </Tab>
-
-        <!-- Admin Page -->
         <Tab Icon="Admin.png">
             <ShellContent
             Title="Admin"
             ContentTemplate="{DataTemplate local:AdminMainPageView}"
             IsVisible="{Binding IsAdminVisible}"
-            Route="AdminPageView" />
+            Route="AdminPage" />
         </Tab>
-
         <Tab Icon="signout.png">
-            <ShellContent>
-                <Button
-                    Margin="15"
-                    Command="{Binding SignOut}"
-                    VerticalOptions="Center"
-                    HorizontalOptions="Center" />
-            </ShellContent>
-            
+            <ShellContent
+                Title="SignOut"
+                ContentTemplate="{DataTemplate local:SignOutView}"
+                Route="SignOut" />
+
         </Tab>
     </TabBar>
-
 </Shell>
