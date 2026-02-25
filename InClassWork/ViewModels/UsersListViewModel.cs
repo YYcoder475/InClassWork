@@ -9,23 +9,48 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace InClassWork.ViewModels
 {
     public partial class UsersListViewModel : ObservableObject
     {
         private List<AppUser> _allUsers;
+        public ObservableCollection<AppUser> AllUsers { get; set; }
+
+
+
+
+        private ICommand GetUsers2Command;
+        public Command GetAllUsersCommand
+        {
+            get
+            {
+                return new Command(() =>
+                {
+                    // This command can be used to fetch all users from the database
+                    // For example, it could be bound to a button to refresh the user list
+                    _allUsers = new DBMokup().GetUsers();
+                    AllUsers.Clear(); // Clear the existing collection
+                    foreach (var user in _allUsers)
+                    {
+                        AllUsers.Add(user); // Add each user to the ObservableCollection
+                    }
+                });
+            }
+        }
+
         [ObservableProperty] private string? _searchText;
         [ObservableProperty] private string _usersFilterButtonText;
-        private bool _isBusy;
+        [ObservableProperty] private bool _isBusy;
 
-        public ObservableCollection<AppUser> AllUsers { get; set; }
         public Command? ClearFilterCommand { get; }
 
 
         public UsersListViewModel()
         {
             _usersFilterButtonText = FontHelper.USERS_FILTER_ON;
+            GetUsers2Command = new Command(GetUsersFromDB);
             ClearFilterCommand = new Command(ClearFilter, () => string.IsNullOrEmpty(_searchText));
 
             // Load all users from the database mockup
@@ -46,18 +71,7 @@ namespace InClassWork.ViewModels
             throw new NotImplementedException();
 
         }
-        public Command? GetAllUsersCommand
-        {
-            get
-            {
-                return new Command(() =>
-                {
-                    // This command can be used to fetch all users from the database
-                    // For example, it could be bound to a button to refresh the user list
-                    _allUsers = new DBMokup().GetUsers();
-                });
-            }
-        }
+        
         public Command GetUsersCommand
         {
             get
@@ -74,6 +88,21 @@ namespace InClassWork.ViewModels
                     }
                 });
             }
+        }
+
+        [RelayCommand]
+        private void NavigateToAccountPage()
+        {
+            Shell.Current.GoToAsync("AccountPageView");
+        }
+        private void GetUsersFromDB()
+        {
+            _allUsers = new DBMokup().GetUsers();
+        }
+
+        internal void OnAppearing()
+        {
+            GetUsersCommand.Execute(null);
         }
     }
 }

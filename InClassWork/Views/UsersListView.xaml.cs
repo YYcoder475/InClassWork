@@ -13,7 +13,9 @@ public partial class UsersListView : ContentPage
 	protected override void OnAppearing()
 	{
 		base.OnAppearing();
-        //((ViewModels.UsersListViewModel)BindingContext).GetUsersCommand.Execute(null);
+		//((ViewModels.UsersListViewModel)BindingContext).GetUsersCommand.Execute(null);
+
+		//(BindingContext as UsersListViewModel)!.OnAppearing();
 
         // Optionally, you can call a method to load data when the page appears
         if (BindingContext is UsersListViewModel viewModel)

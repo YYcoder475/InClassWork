@@ -14,8 +14,8 @@ public partial class App : Application
 
     protected override Window CreateWindow(IActivationState activationState)
     {
-		////NavigationPage navigationPage = new NavigationPage(new SignInWorkout());
-		NavigationPage navigationPage = new NavigationPage(new UsersListView());
+		NavigationPage navigationPage = new NavigationPage(new SignInWorkout());
+		//NavigationPage navigationPage = new NavigationPage(new UsersListView());
 		return new Window(navigationPage);
 	}
 }
